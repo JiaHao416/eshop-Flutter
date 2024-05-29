@@ -64,13 +64,6 @@ class MainPageState extends State<MainPage> {
         selectedIndex: _selectedIndex,
         onItemTapped: _onItemTapped,
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     // 在这里添加悬浮操作按钮被点击时的处理逻辑
-      //   },
-      //   backgroundColor: Colors.white,
-      //   child: Icon(Icons.arrow_upward), // 悬浮操作按钮的背景颜色
-      // ),
     );
   }
 }

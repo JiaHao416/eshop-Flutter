@@ -1,4 +1,4 @@
-import 'package:flutter_app/viewModle/base_view_model.dart';
+import 'package:flutter_app/base/base_view_model.dart';
 
 class HomeViewModel extends BaseViewModel {
   List<String> dataList = [];
