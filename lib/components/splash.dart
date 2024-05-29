@@ -36,7 +36,10 @@ class SplashState extends State<Splash> {
               overlays: SystemUiOverlay.values);
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => MainPage()),
+            MaterialPageRoute(
+                builder: (context) => MainPage(
+                      context: context,
+                    )),
           );
         }
       }

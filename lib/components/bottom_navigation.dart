@@ -28,12 +28,12 @@ class BottomNavigationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final loadingProvider =
-        Provider.of<LoadingProvider>(context, listen: false);
+    // final loadingProvider =
+    //     Provider.of<LoadingProvider>(context, listen: false);
 
     void handleItemTap(int index) {
       onItemTapped(index);
-      loadingProvider.toggleLoading();
+      // loadingProvider.toggleLoading();
     }
 
     return LayoutBuilder(

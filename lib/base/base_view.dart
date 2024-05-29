@@ -1,26 +1,25 @@
+// base_page.dart
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../util/loading_provider.dart';
 
-class BasePage extends StatefulWidget {
-  final Widget child; // 子部件
-
-  BasePage({required this.child}); // 构造函数
-
-  @override
-  _BasePageState createState() => _BasePageState();
+abstract class BasePage extends StatefulWidget {
+  final BuildContext context;
+  const BasePage({required this.context, super.key});
 }
 
-class _BasePageState extends State<BasePage> {
+abstract class BasePageState<T extends BasePage> extends State<T> {
+  late LoadingProvider loadingProvider;
+
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          widget.child, // 渲染子部件
-          Center(
-            child: CircularProgressIndicator(),
-          ),
-        ],
-      ),
-    );
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    loadingProvider =
+        Provider.of<LoadingProvider>(widget.context, listen: false);
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 }

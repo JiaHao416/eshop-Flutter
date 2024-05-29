@@ -9,10 +9,12 @@ class LoadingProvider extends ChangeNotifier {
   void toggleLoading() {
     _isLoading = !_isLoading;
     notifyListeners();
-    Future.delayed(Duration(seconds: 1), () {
-      _isLoading = false;
-      notifyListeners();
-    });
+    if (_isLoading) {
+      Future.delayed(Duration(seconds: 3), () {
+        _isLoading = false;
+        notifyListeners();
+      });
+    }
   }
 
   void startLoading() {

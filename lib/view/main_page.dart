@@ -4,15 +4,18 @@ import 'package:flutter_app/components/bottom_navigation.dart';
 import 'package:flutter_app/view/favorite_page.dart';
 import 'package:flutter_app/view/home_page.dart';
 import 'package:flutter_app/view/profile_page.dart';
+import '../base/base_view.dart';
+import '../components/loading.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+class MainPage extends BasePage {
+  const MainPage({required BuildContext context, super.key})
+      : super(context: context);
 
   @override
   MainPageState createState() => MainPageState();
 }
 
-class MainPageState extends State<MainPage> {
+class MainPageState extends BasePageState<MainPage> {
   int _selectedIndex = 0;
 
   @override
@@ -23,6 +26,7 @@ class MainPageState extends State<MainPage> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      loadingProvider.toggleLoading();
     });
   }
 
@@ -56,9 +60,12 @@ class MainPageState extends State<MainPage> {
         title: Text('AppBarLayout'),
         backgroundColor: Colors.white,
       ),
-      body: RefreshIndicator(
-        onRefresh: _onRefresh,
-        child: fragmentView(),
+      body: Loading(
+        cancellable: false,
+        child: RefreshIndicator(
+          onRefresh: _onRefresh,
+          child: fragmentView(),
+        ),
       ),
       bottomNavigationBar: BottomNavigationView(
         selectedIndex: _selectedIndex,
