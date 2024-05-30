@@ -10,33 +10,62 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    // 创建 SliverToBoxAdapter 列表
-    List<Widget> slivers = [
-      SliverList(
-        delegate: SliverChildBuilderDelegate(
-          (BuildContext context, int index) {
-            return ListTile(
-              title: Text('List 1 - Item $index'),
-            );
-          },
-          childCount: 50,
-        ),
-      ),
-      SliverList(
-        delegate: SliverChildBuilderDelegate(
-          (BuildContext context, int index) {
-            return ListTile(
-              title: Text('List 2 - Item $index'),
-            );
-          },
-          childCount: 50,
-        ),
-      ),
-    ];
-
-    // 将 slivers 传递给 ScrollContainer
     return ScrollContainer(
-      slivers: slivers,
+      slivers: [
+        _buildHorizontalList(),
+        _buildVerticalList(),
+      ],
+    );
+  }
+
+  Widget _buildHorizontalList() {
+    return SliverToBoxAdapter(
+      child: SizedBox(
+        height: 50,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: 50,
+          itemBuilder: (BuildContext context, int index) {
+            return _buildGridItem(index);
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildGridItem(int index) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          margin: EdgeInsets.symmetric(horizontal: 20),
+          child: Center(
+            child: Text(
+              'Grid Item $index',
+              style: TextStyle(fontSize: 12, color: Colors.black),
+            ),
+          ),
+        ),
+        Container(
+          width: 1,
+          color: Color(int.parse('0xFF459B2C')),
+          margin: EdgeInsets.only(top: 2, bottom: 2),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildVerticalList() {
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (BuildContext context, int index) {
+          return ListTile(
+            title: Text('Vertical List - Item $index'),
+          );
+        },
+        childCount: 50,
+      ),
     );
   }
 }

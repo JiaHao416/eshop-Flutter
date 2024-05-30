@@ -55,7 +55,6 @@ class MainPageState extends BasePageState<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: false,
       appBar: AppBar(
         title: Text('AppBarLayout'),
         backgroundColor: Colors.white,

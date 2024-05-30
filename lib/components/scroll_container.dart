@@ -54,7 +54,8 @@ class _ScrollContainerState extends State<ScrollContainer> {
           _scrollVisibilityController.containerHeight = _containerHeight;
           return CustomScrollView(
             controller: _controller,
-            slivers: widget.slivers, // 使用外部传递的slivers参数
+            scrollDirection: Axis.vertical,
+            slivers: widget.slivers,
           );
         },
       ),
