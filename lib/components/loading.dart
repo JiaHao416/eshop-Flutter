@@ -3,61 +3,57 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/util/loading_provider.dart';
 import 'package:provider/provider.dart';
 
-class Loading extends StatelessWidget {
-  final Widget child;
-  final bool cancellable;
-
-  Loading({required this.child, this.cancellable = true});
-
+class LoadingDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<LoadingProvider>(
       builder: (context, loadingProvider, _) {
         if (loadingProvider.isLoading) {
-          return WillPopScope(
-            onWillPop: () async => cancellable,
+          Future.microtask(() => _showLoadingDialog(context));
+        } else {
+          Future.microtask(() => _hideLoadingDialog(context));
+        }
+        return SizedBox.shrink();
+      },
+    );
+  }
+
+  void _showLoadingDialog(BuildContext context) {
+    if (ModalRoute.of(context)?.isCurrent ?? false) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return PopScope(
+            canPop: false,
             child: Dialog(
+              insetPadding: EdgeInsets.zero,
               backgroundColor: Colors.transparent,
-              elevation: 0,
               child: Center(
                 child: Container(
-                  padding: EdgeInsets.all(16),
+                  width: 60,
+                  height: 60,
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      CircularProgressIndicator(),
-                      SizedBox(height: 16),
-                    ],
+                  child: Container(
+                    margin: EdgeInsets.all(10),
+                    child: CircularProgressIndicator(
+                      color: Colors.green,
+                    ),
                   ),
                 ),
               ),
             ),
           );
-          // return Container(
+        },
+      );
+    }
+  }
 
-          //   color: Colors.black.withOpacity(0.5),
-          //   child: Center(
-          //     child: Container(
-          //       width: 50,
-          //       height: 50,
-          //       decoration: BoxDecoration(
-          //         color: Colors.white,
-          //         borderRadius: BorderRadius.circular(10),
-          //       ),
-          //       child: Center(
-          //         child: CircularProgressIndicator(),
-          //       ),
-          //     ),
-          //   ),
-          // );
-        } else {
-          return child;
-        }
-      },
-    );
+  void _hideLoadingDialog(BuildContext context) {
+    if (Navigator.of(context, rootNavigator: true).canPop()) {
+      Navigator.of(context, rootNavigator: true).pop();
+    }
   }
 }

@@ -60,12 +60,14 @@ class MainPageState extends BasePageState<MainPage> {
         title: Text('AppBarLayout'),
         backgroundColor: Colors.white,
       ),
-      body: Loading(
-        cancellable: false,
-        child: RefreshIndicator(
-          onRefresh: _onRefresh,
-          child: fragmentView(),
-        ),
+      body: Stack(
+        children: [
+          RefreshIndicator(
+            onRefresh: _onRefresh,
+            child: fragmentView(),
+          ),
+          LoadingDialog()
+        ],
       ),
       bottomNavigationBar: BottomNavigationView(
         selectedIndex: _selectedIndex,
