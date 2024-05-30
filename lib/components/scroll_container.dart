@@ -48,6 +48,7 @@ class _ScrollContainerState extends State<ScrollContainer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: LayoutBuilder(
         builder: (context, constraints) {
           _containerHeight = constraints.maxHeight;
