@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/util/loading_provider.dart';
-import 'package:provider/provider.dart';
 
 class BottomNavigationView extends StatelessWidget {
   final int selectedIndex;

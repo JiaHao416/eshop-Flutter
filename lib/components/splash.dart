@@ -26,7 +26,7 @@ class SplashState extends State<Splash> {
 
   void _videoListener() {
     if (_controller.value.isInitialized) {
-      if (_controller.value.position >= _controller.value.duration!) {
+      if (_controller.value.position >= _controller.value.duration) {
         if (_playCount < 0) {
           _playCount++;
           _controller.seekTo(Duration.zero);
