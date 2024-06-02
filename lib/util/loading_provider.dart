@@ -10,7 +10,7 @@ class LoadingProvider extends ChangeNotifier {
     _isLoading = !_isLoading;
     notifyListeners();
     if (_isLoading) {
-      Future.delayed(Duration(seconds: 3), () {
+      Future.delayed(Duration(seconds: 1), () {
         _isLoading = false;
         notifyListeners();
       });

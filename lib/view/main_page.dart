@@ -4,8 +4,10 @@ import 'package:flutter_app/components/bottom_navigation.dart';
 import 'package:flutter_app/view/favorite_page.dart';
 import 'package:flutter_app/view/home_page.dart';
 import 'package:flutter_app/view/profile_page.dart';
+import 'package:provider/provider.dart';
 import '../base/base_view.dart';
 import '../components/loading.dart';
+import '../util/loading_provider.dart';
 
 class MainPage extends BasePage {
   const MainPage({required BuildContext context, super.key})

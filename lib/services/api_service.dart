@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
-import 'package:flutter_app/services/api_home.dart';
+import 'package:flutter_app/model/response/home_response.dart';
 import '../model/api_login.dart';
 import 'dio_client.dart';
 

@@ -11,13 +11,13 @@ class HomeViewModel extends BaseViewModel {
     try {
       var response = (await apiService.homepage(version: '2'));
       // if (response.success ?? false) {
-      // print("response: ${response}");
-      notifyListeners();
+      print("response: ${response}");
+      //   notifyListeners();
       // } else {
-      //   print('Error: ${response.errorMessage}');
+      // print('Error: ${response.errorMessage}');
       // }
     } catch (error) {
-      print(error);
+      print("error : ${error}");
     }
   }
 

@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/components/scroll_container.dart';
 import 'package:provider/provider.dart';
-
 import '../viewModle/home_page_view_model.dart';
 
 class HomePage extends StatefulWidget {

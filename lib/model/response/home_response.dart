@@ -1,3 +1,5 @@
+import '../home_components.dart';
+
 class HomePageResponse {
   final List<HomeComponent>? data;
   final String? errorMessage;
@@ -5,7 +7,7 @@ class HomePageResponse {
 
   HomePageResponse({this.data, this.errorMessage, this.success});
 
-  factory HomePageResponse.fromJson(Map<String, dynamic> json) {
+  factory HomePageResponse.fromJson(Map<dynamic, dynamic> json) {
     return HomePageResponse(
       data: (json['data'] as List<dynamic>?)
           ?.map((e) => HomeComponent.fromJson(e))
@@ -15,29 +17,11 @@ class HomePageResponse {
     );
   }
 
-  Map<String, dynamic> toJson() {
+  Map<dynamic, dynamic> toJson() {
     return {
       'data': data?.map((e) => e.toJson()).toList(),
       'error_message': errorMessage,
       'success': success,
-    };
-  }
-}
-
-class HomeComponent {
-  final String title;
-
-  HomeComponent({required this.title});
-
-  factory HomeComponent.fromJson(Map<String, dynamic> json) {
-    return HomeComponent(
-      title: json['title'],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'title': title,
     };
   }
 }
