@@ -4,9 +4,9 @@ class Variant {
   final String? option3;
   final String? shopifyProductVariantId;
   final String? title;
-  // final double? priceV2LessExpensive;
+  final double? priceV2LessExpensive;
   final String? compareAtPriceV2MoreExpensive;
-  // final int? quantityAvailable;
+  final int? quantityAvailable;
   final String? image;
   final bool? availableForSale;
 
@@ -16,12 +16,17 @@ class Variant {
     this.option3,
     this.shopifyProductVariantId,
     this.title,
-    // this.priceV2LessExpensive,
+    this.priceV2LessExpensive,
     this.compareAtPriceV2MoreExpensive,
-    // this.quantityAvailable,
+    this.quantityAvailable,
     this.image,
     this.availableForSale,
   });
+
+  @override
+  String toString() {
+    return 'Variant{option1: $option1, option2: $option2, option3: $option3, shopifyProductVariantId: $shopifyProductVariantId, title: $title, priceV2LessExpensive: $priceV2LessExpensive, compareAtPriceV2MoreExpensive: $compareAtPriceV2MoreExpensive, quantityAvailable: $quantityAvailable, image: $image, availableForSale: $availableForSale}';
+  }
 
   factory Variant.fromJson(Map<String, dynamic> json) {
     return Variant(
@@ -30,11 +35,12 @@ class Variant {
       option3: json['option3'],
       shopifyProductVariantId: json['shopify_product_variant_id'],
       title: json['title'],
-      // priceV2LessExpensive: json['price'],
+      priceV2LessExpensive:
+          json['price'] != null ? double.parse(json['price'].toString()) : null,
       compareAtPriceV2MoreExpensive: json['compare_at_price'],
-      // quantityAvailable: json['inventory_quantity'] != null
-      //     ? int.parse(json['inventory_quantity'].toString())
-      //     : null,
+      quantityAvailable: json['inventory_quantity'] != null
+          ? int.parse(json['inventory_quantity'].toString())
+          : null,
       image: json['image'],
       availableForSale: json['available_for_sale'],
     );
@@ -47,9 +53,9 @@ class Variant {
       'option3': option3,
       'shopify_product_variant_id': shopifyProductVariantId,
       'title': title,
-      // 'price': priceV2LessExpensive,
+      'price': priceV2LessExpensive?.toDouble(),
       'compare_at_price': compareAtPriceV2MoreExpensive,
-      // 'inventory_quantity': quantityAvailable?.toInt(),
+      'inventory_quantity': quantityAvailable?.toInt(),
       'image': image,
       'available_for_sale': availableForSale,
     };

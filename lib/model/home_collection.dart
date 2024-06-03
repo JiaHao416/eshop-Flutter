@@ -15,6 +15,11 @@ class HomeCollection {
     this.notViewable,
   });
 
+  @override
+  String toString() {
+    return 'HomeCollection{layout: $layout, products: $products, shopifyCollectionId: $shopifyCollectionId, title: $title, notViewable: $notViewable}';
+  }
+
   factory HomeCollection.fromJson(Map<String, dynamic> json) {
     return HomeCollection(
       layout: json['layout'],

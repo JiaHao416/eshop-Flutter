@@ -15,6 +15,11 @@ class SplashAd {
     required this.youtubeId,
   });
 
+  @override
+  String toString() {
+    return 'SplashAd{externalUrl: $externalUrl, id: $id, imageSrc: $imageSrc, linkType: $linkType, relatedId: $relatedId, youtubeId: $youtubeId}';
+  }
+
   factory SplashAd.fromJson(Map<String, dynamic> json) {
     return SplashAd(
       externalUrl: json['external_url'],

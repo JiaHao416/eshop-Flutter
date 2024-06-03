@@ -1,23 +1,23 @@
 import 'package:flutter_app/base/base_view_model.dart';
+import '../model/home_components.dart';
 import '../services/api_service.dart';
 
 class HomeViewModel extends BaseViewModel {
-  List<String> dataList = [];
+  List<HomeComponent?> dataList = [];
   final ApiService apiService;
 
   HomeViewModel(this.apiService);
 
-  void fetchData() async {
+  Future<void> fetchData() async {
     try {
-      var response = (await apiService.homepage(version: '2'));
+      var response = await apiService.homepage(version: '2');
       if (response.success ?? false) {
-        print("response: ${response.data}");
-        notifyListeners();
+        addData(response.data ?? []);
       } else {
-        print('Error: ${response.errorMessage}');
+        // print('Error: ${response.errorMessage}');
       }
     } catch (error) {
-      print("error : ${error}");
+      // print("error : ${error}");
     }
   }
 
@@ -30,8 +30,8 @@ class HomeViewModel extends BaseViewModel {
   //   }
   // }
   // 添加数据的方法
-  void addData(String data) {
-    dataList.add(data);
+  void addData(List<HomeComponent?> data) {
+    dataList.addAll(data);
     notifyListeners();
   }
 }

@@ -13,6 +13,11 @@ class Marquee {
     this.textColour,
   });
 
+  @override
+  String toString() {
+    return 'Marquee{externalUrl: $externalUrl, linkType: $linkType, relatedId: $relatedId, text: $text, textColour: $textColour}';
+  }
+
   factory Marquee.fromJson(Map<String, dynamic> json) {
     return Marquee(
       externalUrl: json['external_url'],

@@ -11,6 +11,11 @@ class PopularCategories {
     required this.title,
   });
 
+  @override
+  String toString() {
+    return 'PopularCategories{categories: $categories, layout: $layout, title: $title}';
+  }
+
   factory PopularCategories.fromJson(Map<String, dynamic> json) {
     return PopularCategories(
       categories: json['categories'] != null

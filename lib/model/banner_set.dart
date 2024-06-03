@@ -19,6 +19,11 @@ class BannerSetItem {
     required this.bannerName,
   });
 
+  @override
+  String toString() {
+    return 'BannerSetItem{externalUrl: $externalUrl, id: $id, imageSrc: $imageSrc, linkType: $linkType, relatedId: $relatedId, youtubeId: $youtubeId, notViewable: $notViewable, bannerName: $bannerName}';
+  }
+
   factory BannerSetItem.fromJson(Map<String, dynamic> json) {
     return BannerSetItem(
       externalUrl: json['external_url'],

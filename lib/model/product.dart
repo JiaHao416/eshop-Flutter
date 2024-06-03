@@ -36,6 +36,11 @@ class Product {
     this.similarProducts,
   });
 
+  @override
+  String toString() {
+    return 'Product{descriptionHtml: $descriptionHtml, handle: $handle, isFavourite: $isFavourite, displayImage: $displayImage, logisticTags: $logisticTags, options: $options, shopifyProductId: $shopifyProductId, title: $title, variants: $variants, images: $images, priceV2LessExpensive: $priceV2LessExpensive, compareAtPriceV2MoreExpensive: $compareAtPriceV2MoreExpensive, quantityAvailable: $quantityAvailable, similarProducts: $similarProducts}';
+  }
+
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
       descriptionHtml: json['description_html'],

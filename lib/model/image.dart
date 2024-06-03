@@ -9,6 +9,11 @@ class Image {
     this.width,
   });
 
+  @override
+  String toString() {
+    return 'Image{height: $height, src: $src, width: $width}';
+  }
+
   factory Image.fromJson(Map<String, dynamic> json) {
     return Image(
       height:

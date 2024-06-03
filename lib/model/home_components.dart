@@ -1,3 +1,4 @@
+// ignore_for_file: constant_identifier_names
 import 'banner_set.dart';
 import 'home_collection.dart';
 import 'marquee.dart';
@@ -13,6 +14,7 @@ class HomeComponent {
   final List<Marquee>? marquees;
   final String? type;
   final bool? isHidden;
+  late final int viewType;
 
   HomeComponent({
     this.splashAd,
@@ -23,7 +25,14 @@ class HomeComponent {
     this.marquees,
     this.type,
     this.isHidden,
-  });
+  }) {
+    viewType = calculateViewType();
+  }
+
+  @override
+  String toString() {
+    return 'data{splashAd: $splashAd, bannerSet: $bannerSet, popularCategories: $popularCategories, popularCategoriesId: $popularCategoriesId, collection: $collection, marquees: $marquees, type: $type, isHidden: $isHidden, viewType: $viewType}';
+  }
 
   factory HomeComponent.fromJson(Map<String, dynamic> json) {
     return HomeComponent(
@@ -66,4 +75,29 @@ class HomeComponent {
       'is_hidden': isHidden,
     };
   }
+
+  int calculateViewType() {
+    if (bannerSet?.isNotEmpty == true) {
+      return BANNER_SET;
+    } else if (collection != null) {
+      if (collection!.layout == "LinearLayout") {
+        return COLLECTION_LINEAR_LAYOUT;
+      } else {
+        return COLLECTION;
+      }
+    } else if (popularCategories?.layout == "PageLayout") {
+      return POPULAR_CATEGORIES_PAGE_LAYOUT;
+    } else if (popularCategories?.layout == "ListLayout") {
+      return POPULAR_CATEGORIES_LIST_LAYOUT;
+    } else {
+      return POPULAR_CATEGORIES_PLAIN_LAYOUT;
+    }
+  }
 }
+
+const int BANNER_SET = 1;
+const int POPULAR_CATEGORIES_LIST_LAYOUT = 2;
+const int POPULAR_CATEGORIES_PLAIN_LAYOUT = 3;
+const int POPULAR_CATEGORIES_PAGE_LAYOUT = 4;
+const int COLLECTION_LINEAR_LAYOUT = 5;
+const int COLLECTION = 6;

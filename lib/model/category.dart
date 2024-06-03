@@ -5,7 +5,7 @@ class Category {
   final String? shopifyCollectionId;
   final String? title;
   final List<Product>? products;
-  final List<dynamic>? notViewable; // 如果具体类型已知，替换 dynamic
+  final List<dynamic>? notViewable;
 
   Category({
     required this.imageSrc,
@@ -14,6 +14,11 @@ class Category {
     required this.products,
     required this.notViewable,
   });
+
+  @override
+  String toString() {
+    return 'Category{imageSrc: $imageSrc, shopifyCollectionId: $shopifyCollectionId, title: $title, products: $products, notViewable: $notViewable}';
+  }
 
   factory Category.fromJson(Map<String, dynamic> json) {
     return Category(
