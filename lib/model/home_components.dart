@@ -11,7 +11,7 @@ class HomeComponent {
   final PopularCategories? popularCategories;
   final int? popularCategoriesId;
   final HomeCollection? collection;
-  final List<Marquee>? marquees;
+  final List<MarqueeResponse>? marquees;
   final String? type;
   final bool? isHidden;
   late final int viewType;
@@ -55,7 +55,7 @@ class HomeComponent {
           : null,
       marquees: json['messages'] != null
           ? (json['messages'] as List)
-              .map((item) => Marquee.fromJson(item))
+              .map((item) => MarqueeResponse.fromJson(item))
               .toList()
           : null,
       type: json['type'],

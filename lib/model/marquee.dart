@@ -1,11 +1,11 @@
-class Marquee {
+class MarqueeResponse {
   final String? externalUrl;
   final String? linkType;
   final String? relatedId;
   final String? text;
   final String? textColour;
 
-  Marquee({
+  MarqueeResponse({
     this.externalUrl,
     this.linkType,
     this.relatedId,
@@ -18,8 +18,8 @@ class Marquee {
     return 'Marquee{externalUrl: $externalUrl, linkType: $linkType, relatedId: $relatedId, text: $text, textColour: $textColour}';
   }
 
-  factory Marquee.fromJson(Map<String, dynamic> json) {
-    return Marquee(
+  factory MarqueeResponse.fromJson(Map<String, dynamic> json) {
+    return MarqueeResponse(
       externalUrl: json['external_url'],
       linkType: json['link_type'],
       relatedId: json['related_id'],
