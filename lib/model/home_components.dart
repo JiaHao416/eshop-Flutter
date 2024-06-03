@@ -8,21 +8,21 @@ class HomeComponent {
   final SplashAd? splashAd;
   final List<BannerSetItem>? bannerSet;
   final PopularCategories? popularCategories;
-  // final String? popularCategoriesId;
-  // final HomeCollection? collection;
-  // final List<Marquee>? marquees;
-  // final String? type;
-  // final bool? isHidden;
+  final int? popularCategoriesId;
+  final HomeCollection? collection;
+  final List<Marquee>? marquees;
+  final String? type;
+  final bool? isHidden;
 
   HomeComponent({
     this.splashAd,
     this.bannerSet,
     this.popularCategories,
-    // this.popularCategoriesId,
-    // this.collection,
-    // this.marquees,
-    // this.type,
-    // this.isHidden,
+    this.popularCategoriesId,
+    this.collection,
+    this.marquees,
+    this.type,
+    this.isHidden,
   });
 
   factory HomeComponent.fromJson(Map<String, dynamic> json) {
@@ -38,17 +38,19 @@ class HomeComponent {
       popularCategories: json['popular_categories'] != null
           ? PopularCategories.fromJson(json['popular_categories'])
           : null,
-      // popularCategoriesId: json['popular_categories_id'],
-      // collection: json['collection'] != null
-      //     ? HomeCollection.fromJson(json['collection'])
-      //     : null,
-      // marquees: json['messages'] != null
-      //     ? (json['messages'] as List)
-      //         .map((item) => Marquee.fromJson(item))
-      //         .toList()
-      //     : null,
-      // type: json['type'],
-      // isHidden: json['is_hidden'],
+      popularCategoriesId: json['popular_categories_id'] != null
+          ? int.parse(json['popular_categories_id'].toString())
+          : null,
+      collection: json['collection'] != null
+          ? HomeCollection.fromJson(json['collection'])
+          : null,
+      marquees: json['messages'] != null
+          ? (json['messages'] as List)
+              .map((item) => Marquee.fromJson(item))
+              .toList()
+          : null,
+      type: json['type'],
+      isHidden: json['is_hidden'],
     );
   }
 
@@ -57,11 +59,11 @@ class HomeComponent {
       'splash_ad': splashAd?.toJson(),
       'banner_set': bannerSet?.map((item) => item.toJson()).toList(),
       'popular_categories': popularCategories?.toJson(),
-      // 'popular_categories_id': popularCategoriesId,
-      // 'collection': collection?.toJson(),
-      // 'messages': marquees?.map((item) => item.toJson()).toList(),
-      // 'type': type,
-      // 'is_hidden': isHidden,
+      'popular_categories_id': popularCategoriesId?.toInt(),
+      'collection': collection?.toJson(),
+      'messages': marquees?.map((item) => item.toJson()).toList(),
+      'type': type,
+      'is_hidden': isHidden,
     };
   }
 }

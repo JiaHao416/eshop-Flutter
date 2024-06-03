@@ -10,12 +10,12 @@ class HomeViewModel extends BaseViewModel {
   void fetchData() async {
     try {
       var response = (await apiService.homepage(version: '2'));
-      // if (response.success ?? false) {
-      print("response: ${response}");
-      //   notifyListeners();
-      // } else {
-      // print('Error: ${response.errorMessage}');
-      // }
+      if (response.success ?? false) {
+        print("response: ${response.data}");
+        notifyListeners();
+      } else {
+        print('Error: ${response.errorMessage}');
+      }
     } catch (error) {
       print("error : ${error}");
     }

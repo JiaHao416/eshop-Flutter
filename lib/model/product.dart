@@ -8,12 +8,12 @@ class Product {
   final String? handle;
   final bool? isFavourite;
   final String? displayImage;
-  // final List<LogisticTag>? logisticTags;
-  // final List<Option>? options;
+  final List<LogisticTag>? logisticTags;
+  final List<Option>? options;
   final String shopifyProductId;
   final String? title;
-  // final List<Variant>? variants;
-  // final List<Image>? images;
+  final List<Variant>? variants;
+  final List<Image>? images;
   final double? priceV2LessExpensive;
   final double? compareAtPriceV2MoreExpensive;
   final int? quantityAvailable;
@@ -24,12 +24,12 @@ class Product {
     this.handle,
     this.isFavourite,
     this.displayImage,
-    // this.logisticTags,
-    // this.options,
+    this.logisticTags,
+    this.options,
     this.shopifyProductId = "",
     this.title,
-    // this.variants,
-    // this.images,
+    this.variants,
+    this.images,
     this.priceV2LessExpensive,
     this.compareAtPriceV2MoreExpensive,
     this.quantityAvailable,
@@ -42,31 +42,33 @@ class Product {
       handle: json['handle'],
       isFavourite: json['is_favourite'],
       displayImage: json['image_src'],
-      // logisticTags: json['logistic_tags'] != null
-      //     ? (json['logistic_tags'] as List)
-      //         .map((tagJson) => LogisticTag.fromJson(tagJson))
-      //         .toList()
-      //     : null,
-      // options: json['options'] != null
-      //     ? (json['options'] as List)
-      //         .map((optionJson) => Option.fromJson(optionJson))
-      //         .toList()
-      //     : null,
+      logisticTags: json['logistic_tags'] != null
+          ? (json['logistic_tags'] as List)
+              .map((tagJson) => LogisticTag.fromJson(tagJson))
+              .toList()
+          : null,
+      options: json['options'] != null
+          ? (json['options'] as List)
+              .map((optionJson) => Option.fromJson(optionJson))
+              .toList()
+          : null,
       shopifyProductId: json['shopify_product_id'] ?? "",
       title: json['title'],
-      // variants: json['variants'] != null
-      //     ? (json['variants'] as List)
-      //         .map((variantJson) => Variant.fromJson(variantJson))
-      //         .toList()
-      //     : null,
-      // images: json['images'] != null
-      //     ? (json['images'] as List)
-      //         .map((imageJson) => Image.fromJson(imageJson))
-      //         .toList()
-      //     : null,
+      variants: json['variants'] != null
+          ? (json['variants'] as List)
+              .map((variantJson) => Variant.fromJson(variantJson))
+              .toList()
+          : null,
+      images: json['images'] != null
+          ? (json['images'] as List)
+              .map((imageJson) => Image.fromJson(imageJson))
+              .toList()
+          : null,
       priceV2LessExpensive:
           json['price'] != null ? double.parse(json['price'].toString()) : null,
-      compareAtPriceV2MoreExpensive: json['compare_at_price'] != null ? double.parse(json['compare_at_price'].toString()) : null,,
+      compareAtPriceV2MoreExpensive: json['compare_at_price'] != null
+          ? double.parse(json['compare_at_price'].toString())
+          : null,
       quantityAvailable: json['inventory_quantity'] != null
           ? int.parse(json['inventory_quantity'].toString())
           : null,
@@ -84,12 +86,12 @@ class Product {
       'handle': handle,
       'is_favourite': isFavourite,
       'image_src': displayImage,
-      // 'logistic_tags': logisticTags?.map((tag) => tag.toJson()).toList(),
-      // 'options': options?.map((option) => option.toJson()).toList(),
+      'logistic_tags': logisticTags?.map((tag) => tag.toJson()).toList(),
+      'options': options?.map((option) => option.toJson()).toList(),
       'shopify_product_id': shopifyProductId,
       'title': title,
-      // 'variants': variants?.map((variant) => variant.toJson()).toList(),
-      // 'images': images?.map((image) => image.toJson()).toList(),
+      'variants': variants?.map((variant) => variant.toJson()).toList(),
+      'images': images?.map((image) => image.toJson()).toList(),
       'price': priceV2LessExpensive?.toDouble(),
       'compare_at_price': compareAtPriceV2MoreExpensive?.toDouble(),
       'inventory_quantity': quantityAvailable?.toInt(),
